@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cicle;
+use App\Models\Modul;
 use Illuminate\Http\Request;
 
-class CicleController extends Controller
+class ModulController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +13,10 @@ class CicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {  // $cicle = Cicle::all();
-         $cicle = Cicle::with('moduls')->get();
-        return response()->json($cicle, 200);
-        
+    {
+        $modul = Modul::all();
+        // $modul = Cicle::with('cicles')->get();
+        return response()->json($modul, 200);
     }
 
     /**
@@ -36,15 +36,13 @@ class CicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
-        if (isset($request->nom) == true
-        && isset($request->durada) == true
-        && isset($request->horari) == true
-        && isset($request->grau) == true
-        && isset($request->modalidad) == true) {
+        if (isset($request->nombre) == true
+        && isset($request->numero) == true) {
         
-        $cicle = Cicle::create($request->all());
-        return response()->json($cicle, 200);
+        $modul = Modul::create($request->all());
+        return response()->json($modul, 200);
     } else {
         return response()->json(['message' => 'Bad request'], 400);
     }
@@ -53,16 +51,16 @@ class CicleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cicle  $cicle
+     * @param  \App\Models\Modul  $modul
      * @return \Illuminate\Http\Response
      */
-    public function show(Cicle $id)
+    public function show(Modul $id)
     {
-        $cicle = Cicle::all();
+        $modul = Modul::all();
         // $cicle = Cicle::with('cicles')->find($id);
 
-        if ($cicle) {
-            return response()->json( $cicle, 200);
+        if ($modul) {
+            return response()->json( $modul, 200);
         } else {
             return response()->json(['message' => 'Not found'], 404);
         }
@@ -71,10 +69,10 @@ class CicleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cicle  $cicle
+     * @param  \App\Models\Modul  $modul
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cicle $cicle) //! API NO SE HACE SERVIR
+    public function edit(Modul $modul)  //! API NO SE HACE SERVIR
     {
         //
     }
@@ -83,12 +81,12 @@ class CicleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cicle  $cicle
+     * @param  \App\Models\Modul  $modul
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $cicle = Cicle::find($id);
+        $cicle = Modul::find($id);
 
         if ($cicle) {
             $cicle->update($request->all());
@@ -101,16 +99,15 @@ class CicleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cicle  $cicle
+     * @param  \App\Models\Modul  $modul
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    
     {
-        $cicle = Cicle::find($id);
+        $modul = Modul::find($id);
 
-        if ($cicle) {
-            $cicle->delete();
+        if ($modul) {
+             $modul->delete();
             return response()->json(['message' => 'Success'], 204);                        
         } else {
             return response()->json(['message' => 'Not found'], 404);

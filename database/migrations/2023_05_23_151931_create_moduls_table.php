@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCiclesTable extends Migration
+class CreateModulsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateCiclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cicles', function (Blueprint $table) {
+        Schema::create('moduls', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nom', 20);
-            $table->integer('durada',);
-            $table->string('horari', 50);
-            $table->boolean('modalidad', 10);
-            $table->string('grau', 10);
-            
+            $table->string('numero');
+            $table->string('nombre');
+            $table->foreignId('cicle_id')->constrained('cicles')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
+           
         });
     }
 
@@ -32,6 +32,6 @@ class CreateCiclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cicles');
+        Schema::dropIfExists('moduls');
     }
 }

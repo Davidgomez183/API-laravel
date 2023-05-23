@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\ModulController;
+use App\Http\Controllers\CicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/cicles', CicleController::class);
+Route::resource('/moduls', ModulController::class);
