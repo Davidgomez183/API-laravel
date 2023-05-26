@@ -20,3 +20,6 @@ Route::get('/', function () {
 
 Route::resource('/cicles', CicleController::class);
 Route::resource('/moduls', ModulController::class);
+
+Route::get('/cicles/mitjos', [CiclesController::class, 'getMitjos']);
+Route::get('/cicles/superiors', [CiclesController::class, 'getSuperiors']);

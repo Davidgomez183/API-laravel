@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CicleController;
+use App\Http\Controllers\CiclesController;
 use App\Http\Controllers\ModulController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('/cicles', CicleController::class);
 Route::resource('/moduls', ModulController::class);
+
+Route::get('/cicles/mitjos', [CiclesController::class, 'getMitjos']);
+Route::get('/cicles/superiors', [CiclesController::class, 'getSuperiors']);
